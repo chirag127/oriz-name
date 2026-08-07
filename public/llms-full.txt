@@ -1,0 +1,14 @@
+# oriz Name — full
+
+oriz Name is a free, 100% client-side name generator at https://name.oriz.in for the oriz.in family.
+
+## What it does
+Generates candidate names for brands, products, startups, usernames, and code repositories. You pick a category and a "vibe" (playful, technical, minimal, elegant, bold), and it produces on-brief name ideas plus optional taglines.
+
+## How it works
+- Runs entirely in your browser — no upload, no signup, no server.
+- AI suggestions use g4f/gpt4free (keyless, multi-provider failover). If AI providers are unavailable, the core generator still works.
+- .com-style availability is a client-side heuristic; use the provided links to verify on a registrar.
+
+## Privacy
+Nothing leaves your device. No tracking, no ads. MIT licensed.

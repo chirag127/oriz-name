@@ -1,0 +1,13 @@
+# oriz Name
+
+> Free client-side name generator — brands, products, startups, usernames, repo names — with vibe controls. 100% in-browser, no signup, no upload. AI-assisted via g4f (keyless) with graceful fallback.
+
+## App
+- [Live app](https://name.oriz.in): generate names by vibe, category, and style
+- [About / info](https://chirag127.github.io/oriz-name/)
+
+## Features
+- Brand / product / startup / username / repo-name generation
+- Vibe + style controls (playful, technical, minimal, etc.)
+- Heuristic .com-style availability hints (links out to verify)
+- AI name + tagline suggestions (optional, degrades if AI unavailable)
