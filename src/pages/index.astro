@@ -26,6 +26,13 @@ const desc =
     <meta property="og:url" content="https://name.oriz.in/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#ff2e88" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <script>
+      import { registerSW } from 'virtual:pwa-register'
+      registerSW({ immediate: true })
+    </script>
   </head>
   <body>
     <OzToolShell site="name" title="name generator" mainClass="page">
