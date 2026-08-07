@@ -1,0 +1,101 @@
+---
+import OzToolShell from '@chirag127/oz-chrome/components/OzToolShell.astro'
+import '@fontsource-variable/inter'
+import '@fontsource/monoton'
+import '@chirag127/oz-tokens-base/contract.css'
+import '@chirag127/oz-chrome/styles.css'
+import '../styles/theme.css'
+import '../styles/generator.css'
+import Generator from '../components/Generator.tsx'
+
+const title = 'oriz-name — neon name generator'
+const desc =
+  'Generate brand, product, startup, username and repo names with vibe controls. Heuristic availability + AI taglines. 100% client-side — no signup, no upload.'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href="https://name.oriz.in/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://name.oriz.in/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <OzToolShell site="name" title="name generator" mainClass="page">
+      <section class="hero">
+        <p class="hero__kicker neon neon--amber neon--flicker">✦ open 24 / 7 ✦</p>
+        <h1 class="hero__title neon">
+          Name<span class="neon--cyan"> anything</span>
+        </h1>
+        <p class="hero__sub">
+          Brands · products · startups · usernames · repos. Dial a vibe, pull the lever, watch
+          the marquee light up with fresh names — each with a heuristic .com-style availability read
+          and the trick behind how it was coined.
+        </p>
+      </section>
+
+      <Generator client:load />
+
+      <section class="notes">
+        <h2 class="notes__h neon neon--violet">How it works</h2>
+        <ul class="notes__list">
+          <li><b>Deterministic engine</b> — affix, portmanteau, de-vowel, compound + coined techniques, scored for brandability.</li>
+          <li><b>Availability</b> is a client-side heuristic (length, dictionary-word, coined spelling). No live WHOIS — every name links out to Namecheap / WHOIS / GitHub / npm / X to verify.</li>
+          <li><b>AI names + taglines</b> load the model only on demand, with failover across providers. If AI is down, the core generator still works.</li>
+        </ul>
+      </section>
+
+      <Fragment slot="footer">
+        <a href="https://github.com/chirag127/oriz-name" target="_blank" rel="noopener noreferrer">Source</a>
+        <span>100% client-side · no signup · no upload</span>
+      </Fragment>
+    </OzToolShell>
+  </body>
+</html>
+
+<style>
+  .page {
+    display: grid;
+    gap: var(--oz-space-12);
+  }
+  .hero {
+    text-align: center;
+    display: grid;
+    gap: var(--oz-space-3);
+    padding: var(--oz-space-8) 0 var(--oz-space-4);
+  }
+  .hero__kicker {
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    margin: 0;
+  }
+  .hero__title {
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    margin: 0;
+  }
+  .hero__sub {
+    max-width: 48rem;
+    margin: 0 auto;
+    color: var(--oz-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  .notes__h {
+    font-size: 1.4rem;
+  }
+  .notes__list {
+    color: var(--oz-muted);
+    line-height: 1.8;
+    max-width: 60rem;
+  }
+  .notes__list b {
+    color: var(--oz-fg);
+  }
+</style>

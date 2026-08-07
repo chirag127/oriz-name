@@ -1,0 +1,208 @@
+/*
+ * oriz-name — NEON MARQUEE theme.
+ * Retro sign-shop: warm dark night, glowing tube-letter names, marquee bulbs.
+ * Overrides the shared --oz-* contract with this site's bespoke identity.
+ * Loaded AFTER @chirag127/oz-tokens-base + oz-chrome styles.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* --- bespoke palette: dusk-purple night + hot neon --- */
+  --neon-pink: #ff2e88;
+  --neon-cyan: #21e6ff;
+  --neon-amber: #ffb02e;
+  --neon-violet: #b26bff;
+  --night-0: #0a0612; /* deepest */
+  --night-1: #140a24;
+  --night-2: #1e1236;
+  --bulb: #ffe9a8;
+
+  /* map onto the shared contract */
+  --oz-bg: var(--night-0);
+  --oz-fg: #f6ecff;
+  --oz-surface: var(--night-1);
+  --oz-muted: #b79fd6;
+  --oz-border: #3a2360;
+  --oz-accent: var(--neon-pink);
+  --oz-accent-fg: #12030b;
+
+  /* extra tokens the oz-chrome stylesheet consumes */
+  --oz-ink: var(--oz-fg);
+  --oz-ink-mute: var(--oz-muted);
+  --oz-paper: rgba(20, 10, 36, 0.72);
+  --oz-paper-2: var(--night-2);
+  --oz-rule: var(--oz-border);
+  --oz-header-h: 4rem;
+  --oz-container: 74rem;
+  --oz-text-lg: 1.4rem;
+  --oz-text-md: 1rem;
+  --oz-text-sm: 0.85rem;
+  --oz-space-5: 1.25rem;
+
+  /* bespoke type pairing: Monoton (marquee display) + Inter (body) */
+  --oz-font-display: 'Monoton', var(--oz-font-body);
+  --oz-font-body: 'Inter Variable', system-ui, sans-serif;
+  --oz-font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --marquee-glow: 0 0 4px #fff, 0 0 11px var(--neon-pink),
+    0 0 22px var(--neon-pink), 0 0 40px var(--neon-pink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--oz-bg);
+  color: var(--oz-fg);
+  font-family: var(--oz-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(1200px 600px at 20% -10%, rgba(178, 107, 255, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(33, 230, 255, 0.12), transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 39px, rgba(255, 255, 255, 0.015) 39px 40px);
+}
+
+a {
+  color: var(--neon-cyan);
+}
+
+/* ---- neon tube text ---- */
+.neon {
+  font-family: var(--oz-font-display);
+  color: #fff;
+  text-shadow: var(--marquee-glow);
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+.neon--cyan {
+  text-shadow: 0 0 4px #fff, 0 0 11px var(--neon-cyan), 0 0 22px var(--neon-cyan),
+    0 0 40px var(--neon-cyan);
+}
+.neon--amber {
+  text-shadow: 0 0 4px #fff, 0 0 11px var(--neon-amber), 0 0 22px var(--neon-amber),
+    0 0 40px var(--neon-amber);
+}
+.neon--violet {
+  text-shadow: 0 0 4px #fff, 0 0 11px var(--neon-violet), 0 0 22px var(--neon-violet),
+    0 0 40px var(--neon-violet);
+}
+
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  80%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  82% {
+    opacity: 0.55;
+  }
+}
+.neon--flicker {
+  animation: flicker 5.5s infinite steps(1);
+}
+
+/* ---- marquee bulb border ---- */
+.marquee-frame {
+  position: relative;
+  border-radius: var(--oz-radius-l);
+  padding: var(--oz-space-6);
+  background: linear-gradient(180deg, rgba(30, 18, 54, 0.82), rgba(10, 6, 18, 0.9));
+  border: 1px solid var(--oz-border);
+  box-shadow: inset 0 0 60px rgba(178, 107, 255, 0.08);
+}
+.marquee-frame::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: calc(var(--oz-radius-l) - 4px);
+  pointer-events: none;
+  background:
+    radial-gradient(circle, var(--bulb) 0 2px, transparent 2.5px) top left / 22px 22px repeat-x,
+    radial-gradient(circle, var(--bulb) 0 2px, transparent 2.5px) bottom left / 22px 22px repeat-x,
+    radial-gradient(circle, var(--bulb) 0 2px, transparent 2.5px) top left / 22px 22px repeat-y,
+    radial-gradient(circle, var(--bulb) 0 2px, transparent 2.5px) top right / 22px 22px repeat-y;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 3px var(--neon-amber));
+  animation: bulbs 1.6s infinite steps(2);
+}
+@keyframes bulbs {
+  0% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon--flicker,
+  .marquee-frame::before,
+  .slot-cell {
+    animation: none !important;
+  }
+}
+
+/* generic buttons/inputs, themed */
+.btn {
+  font-family: var(--oz-font-body);
+  font-weight: 600;
+  border-radius: var(--oz-radius-full);
+  border: 1px solid transparent;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  transition: transform var(--oz-dur-fast) var(--oz-ease-out),
+    box-shadow var(--oz-dur-base) var(--oz-ease-out);
+}
+.btn--primary {
+  background: var(--neon-pink);
+  color: var(--oz-accent-fg);
+  box-shadow: 0 0 18px rgba(255, 46, 136, 0.55);
+}
+.btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 28px rgba(255, 46, 136, 0.8);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--oz-fg);
+  border-color: var(--oz-border);
+}
+.btn--ghost:hover {
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+.field {
+  width: 100%;
+  background: rgba(10, 6, 18, 0.6);
+  border: 1px solid var(--oz-border);
+  border-radius: var(--oz-radius-m);
+  color: var(--oz-fg);
+  padding: 0.6rem 0.8rem;
+  font: inherit;
+}
+.field::placeholder {
+  color: var(--oz-muted);
+}
