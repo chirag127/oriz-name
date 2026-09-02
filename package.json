@@ -12,7 +12,7 @@
     "deploy": "astro build && wrangler pages deploy dist --project-name oriz-name --branch main --commit-dirty=true"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.0",
+    "@astrojs/react": "^6.0.4",
     "@astrojs/sitemap": "^3.6.0",
     "@chirag127/oz-ai": "^0.3.3",
     "@chirag127/oz-chrome": "^0.1.0",
@@ -22,14 +22,14 @@
     "@fontsource/monoton": "^5.2.5",
     "@tailwindcss/vite": "^4.1.11",
     "@vite-pwa/astro": "^1.2.0",
-    "astro": "^6.4.8",
+    "astro": "^7.2.9",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "vitest": "^3.2.4"
+    "@types/react-dom": "^19.2.5",
+    "vitest": "^4.1.11"
   }
 }
